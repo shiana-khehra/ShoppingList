@@ -14,7 +14,7 @@
     <body>
         <h1>Shopping List</h1>
         
-        <form>
+        <form action="ShoppingList" method="post">
             <label for="username">Username: </label>
             <input type="text" id="name" name="name">
             
