@@ -24,6 +24,16 @@ public class ShoppingListServlet extends HttpServlet {
             throws ServletException, IOException {        
         HttpSession session = request.getSession();
         
+        if(session.getAttribute("name") != null) {
+            String query = request.getQueryString();
+        
+            if(query != null && query.contains("logout")) {
+                session.invalidate();
+                response.sendRedirect("ShoppingList");
+                return;
+            }
+        } 
+        
         String name = (String)session.getAttribute("name");
         
         if(name == null) {
