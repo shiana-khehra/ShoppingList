@@ -1,9 +1,3 @@
-<%-- 
-    Document   : register
-    Created on : Feb 14, 2022, 9:15:25 PM
-    Author     : HP
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

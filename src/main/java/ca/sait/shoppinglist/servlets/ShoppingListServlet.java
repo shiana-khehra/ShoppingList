@@ -1,6 +1,7 @@
 package ca.sait.shoppinglist.servlets;
 
 import java.io.*;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
@@ -43,10 +44,26 @@ public class ShoppingListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
-        
         HttpSession session = request.getSession();
-        session.setAttribute("name", name);
+        
+        String action = request.getParameter("action");
+        
+        if(action != null && action.equals("add")) {
+            String item = request.getParameter("item");
+                
+            ArrayList<String> items = (ArrayList<String>)session.getAttribute("items");
+            
+            items.add(item);
+            
+            session.setAttribute("items", items);
+        } else {
+            String name = request.getParameter("name");
+            
+            ArrayList<String> items = new ArrayList<>();
+            
+            session.setAttribute("name", name);
+            session.setAttribute("items", items);
+        }
         
         getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
     }
